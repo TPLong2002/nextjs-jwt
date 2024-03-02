@@ -22,10 +22,10 @@ const initialState: AuthState = {
 // Define the initial state using that type
 
 export const accountUser = createAsyncThunk("user/account", async () => {
-  const response = await axios.get("/user/account", {
+  const response = (await axios.get("/user/account", {
     withCredentials: true,
-  });
-  if (response.code === 0) {
+  })) as any;
+  if (response?.code === 0) {
     return response.data;
   } else {
     return { ...initialState };
